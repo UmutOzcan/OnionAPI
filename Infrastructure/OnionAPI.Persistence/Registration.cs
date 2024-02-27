@@ -7,6 +7,7 @@ namespace OnionAPI.Persistence;
 
 public static class Registration
 {
+    //this ile IServiceCollection extension metodu olarak oluşur
     public static void AddPersistence(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<AppDbContext>(opt => 
