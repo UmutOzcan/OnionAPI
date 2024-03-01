@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using OnionAPI.Application.Interfaces.Repositories;
 using OnionAPI.Persistence.Context;
+using OnionAPI.Persistence.Repositories;
 
 namespace OnionAPI.Persistence;
 
@@ -12,5 +14,7 @@ public static class Registration
     {
         services.AddDbContext<AppDbContext>(opt => 
         opt.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+
+        services.AddScoped(typeof(IReadRepository<>), typeof(ReadRepository<>));
     }
 }
