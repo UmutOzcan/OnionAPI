@@ -19,7 +19,7 @@ public class ReadRepository<T> : IReadRepository<T> where T : class, IEntityBase
 
     public async Task<int> CountAsync(Expression<Func<T, bool>>? predicate = null)
     {
-        Table.AsNoTracking();
+        Table.AsNoTracking(); // sadece okuma yapacağından tracking i kapatarak performans kazanırız
         if (predicate is not null) Table.Where(predicate);
 
         return await Table.CountAsync();
@@ -35,9 +35,9 @@ public class ReadRepository<T> : IReadRepository<T> where T : class, IEntityBase
     {
         IQueryable<T> queryable = Table;
         if (!enableTracking) queryable = queryable.AsNoTracking();
-        if(include is not null) queryable = include(queryable);
-        if(predicate is not null) queryable = queryable.Where(predicate);
-        if(orderBy is not null)
+        if (include is not null) queryable = include(queryable);
+        if (predicate is not null) queryable = queryable.Where(predicate);
+        if (orderBy is not null)
             return await orderBy(queryable).ToListAsync();
 
         return await queryable.ToListAsync();
@@ -50,7 +50,7 @@ public class ReadRepository<T> : IReadRepository<T> where T : class, IEntityBase
         if (include is not null) queryable = include(queryable);
         if (predicate is not null) queryable = queryable.Where(predicate);
         if (orderBy is not null)
-            return await orderBy(queryable).Skip((currentPage -1) * pageSize).Take(pageSize).ToListAsync();
+            return await orderBy(queryable).Skip((currentPage - 1) * pageSize).Take(pageSize).ToListAsync();
 
         return await queryable.Skip((currentPage - 1) * pageSize).Take(pageSize).ToListAsync();
     }
