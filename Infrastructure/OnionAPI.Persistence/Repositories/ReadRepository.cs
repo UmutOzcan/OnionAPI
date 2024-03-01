@@ -8,6 +8,7 @@ namespace OnionAPI.Persistence.Repositories;
 
 public class ReadRepository<T> : IReadRepository<T> where T : class, IEntityBase, new()
 {
+    // DI
     private readonly DbContext _context;
     public ReadRepository(DbContext context)
     {

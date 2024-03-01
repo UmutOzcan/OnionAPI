@@ -21,6 +21,7 @@ public interface IReadRepository<T> where T : class, IEntityBase, new()
         int pageSize = 3
         );
 
+    // tek bir varlik alacagindan Nullable olmasına gerek yok
     Task<T> GetAsync(Expression<Func<T, bool>> predicate,
         Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
         bool enableTracking = false

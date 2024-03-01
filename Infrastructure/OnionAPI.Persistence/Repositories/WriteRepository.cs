@@ -6,6 +6,7 @@ namespace OnionAPI.Persistence.Repositories;
 
 public class WriteRepository<T> : IWriteRepository<T> where T : class, IEntityBase, new()
 {
+    // DI
     private readonly DbContext _context;
     public WriteRepository(DbContext context)
     {
@@ -29,6 +30,7 @@ public class WriteRepository<T> : IWriteRepository<T> where T : class, IEntityBa
         await Task.Run(() => Table.Remove(entity));
     }
 
+    // Soft delete isini de update ile yaparız
     public async Task<T> UpdateAsync(T entity)
     {
         await Task.Run(() => Table.Update(entity));

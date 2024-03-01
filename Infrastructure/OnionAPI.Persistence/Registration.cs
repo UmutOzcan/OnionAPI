@@ -15,6 +15,7 @@ public static class Registration
         services.AddDbContext<AppDbContext>(opt => 
         opt.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
+        // Scoped -> her request bir instance
         services.AddScoped(typeof(IReadRepository<>), typeof(ReadRepository<>));
         services.AddScoped(typeof(IWriteRepository<>), typeof(WriteRepository<>));
     }
