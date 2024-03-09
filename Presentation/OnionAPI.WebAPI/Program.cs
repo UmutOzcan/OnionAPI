@@ -1,4 +1,5 @@
 using OnionAPI.Persistence;
+using OnionAPI.Application; // Project Reference vermeden cagirabiliyoruz
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,7 @@ builder.Configuration
     .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
 
 builder.Services.AddPersistence(builder.Configuration);
+builder.Services.AddApplication(); // böylece baðýmlýlýk azaltmýþ oluyoruz
 
 var app = builder.Build();
 
