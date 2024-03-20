@@ -1,5 +1,5 @@
 ﻿using OnionAPI.Application.Interfaces.Repositories;
-using OnionAPI.Application.UnitOfWork;
+using OnionAPI.Application.Interfaces.UnitOfWork;
 using OnionAPI.Persistence.Context;
 using OnionAPI.Persistence.Repositories;
 

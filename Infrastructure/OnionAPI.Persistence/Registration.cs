@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OnionAPI.Application.Interfaces.Repositories;
-using OnionAPI.Application.UnitOfWork;
+using OnionAPI.Application.Interfaces.UnitOfWork;
 using OnionAPI.Persistence.Context;
 using OnionAPI.Persistence.Repositories;
 using OnionAPI.Persistence.UnitOfWorks;

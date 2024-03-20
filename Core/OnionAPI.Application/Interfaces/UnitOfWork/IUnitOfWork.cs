@@ -1,7 +1,7 @@
 ﻿using OnionAPI.Application.Interfaces.Repositories;
 using OnionAPI.Domain.Common;
 
-namespace OnionAPI.Application.UnitOfWork;
+namespace OnionAPI.Application.Interfaces.UnitOfWork;
 
 public interface IUnitOfWork : IAsyncDisposable
 {

@@ -1,5 +1,6 @@
 using OnionAPI.Persistence;
 using OnionAPI.Application; // Project Reference vermeden cagirabiliyoruz
+using OnionAPI.Mapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,7 @@ builder.Configuration
 
 builder.Services.AddPersistence(builder.Configuration);
 builder.Services.AddApplication(); // böylece baðýmlýlýk azaltmýþ oluyoruz
+builder.Services.AddCustomMapper();
 
 var app = builder.Build();
 
