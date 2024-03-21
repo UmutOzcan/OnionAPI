@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using OnionAPI.Application.Features.Products.Command.CreateProduct;
 using OnionAPI.Application.Features.Products.Queries.GetAllProducts;
 
 namespace OnionAPI.WebAPI.Controllers
@@ -21,6 +22,13 @@ namespace OnionAPI.WebAPI.Controllers
         {
             var response = await _mediator.Send(new GetAllProductsQueryRequest());
             return Ok(response);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateProduct(CreateProductCommandRequest request)
+        {
+            await _mediator.Send(request);
+            return Ok();
         }
     }
 }
