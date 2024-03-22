@@ -30,6 +30,11 @@ public class WriteRepository<T> : IWriteRepository<T> where T : class, IEntityBa
         await Task.Run(() => Table.Remove(entity));
     }
 
+    public async Task HardDeleteRangeAsync(IList<T> entity)
+    {
+        await Task.Run(() => Table.RemoveRange(entity));
+    }
+
     // Soft delete isini de update ile yaparız
     public async Task<T> UpdateAsync(T entity)
     {

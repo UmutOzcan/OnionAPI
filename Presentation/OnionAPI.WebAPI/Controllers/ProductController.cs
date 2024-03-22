@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnionAPI.Application.Features.Products.Command.CreateProduct;
+using OnionAPI.Application.Features.Products.Command.DeleteProduct;
+using OnionAPI.Application.Features.Products.Command.UpdateProduct;
 using OnionAPI.Application.Features.Products.Queries.GetAllProducts;
 
 namespace OnionAPI.WebAPI.Controllers
@@ -26,6 +28,20 @@ namespace OnionAPI.WebAPI.Controllers
 
         [HttpPost]
         public async Task<IActionResult> CreateProduct(CreateProductCommandRequest request)
+        {
+            await _mediator.Send(request);
+            return Ok();
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteProduct(DeleteProductCommandRequest request)
+        {
+            await _mediator.Send(request);
+            return Ok();
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateProduct(UpdateProductCommandRequest request)
         {
             await _mediator.Send(request);
             return Ok();
