@@ -1,6 +1,7 @@
 using OnionAPI.Persistence;
 using OnionAPI.Application; // Project Reference vermeden cagirabiliyoruz
 using OnionAPI.Mapper;
+using OnionAPI.Application.Exceptions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +31,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// Exception Middleware
+app.ConfigureExceptionHandlingMiddleware();
 
 app.UseAuthorization();
 

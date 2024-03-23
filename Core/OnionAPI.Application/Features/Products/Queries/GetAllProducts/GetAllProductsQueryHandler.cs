@@ -19,7 +19,7 @@ public class GetAllProductsQueryHandler : IRequestHandler<GetAllProductsQueryReq
         _mapper = mapper;
     }
     public async Task<IList<GetAllProductsQueryResponse>> Handle(GetAllProductsQueryRequest request, CancellationToken cancellationToken)
-    {
+    {   //eager loading icin include ile ekledim
         var products = await _unitOfWork.GetReadRepository<Product>().GetAllAsync(include:x=>x.Include(b=>b.Brand));
 
         var brand = _mapper.Map<BrandDto, Brand>(new Brand());
@@ -27,6 +27,7 @@ public class GetAllProductsQueryHandler : IRequestHandler<GetAllProductsQueryReq
         foreach (var item in map)
             item.Price -= (item.Price * item.Discount / 100);
 
+        //throw new Exception("napıyon birader");
         return map;
     }
 }
