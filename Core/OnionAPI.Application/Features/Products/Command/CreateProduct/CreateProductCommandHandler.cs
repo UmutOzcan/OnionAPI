@@ -3,7 +3,7 @@ using OnionAPI.Application.Interfaces.UnitOfWork;
 using OnionAPI.Domain.Entities;
 namespace OnionAPI.Application.Features.Products.Command.CreateProduct;
 
-public class CreateProductCommandHandler : IRequestHandler<CreateProductCommandRequest>
+public class CreateProductCommandHandler : IRequestHandler<CreateProductCommandRequest, Unit>
 {
     private readonly IUnitOfWork _unitOfWork;
 
@@ -11,7 +11,7 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommandR
     {
         _unitOfWork = unitOfWork;
     }
-    public async Task Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
+    public async Task<Unit> Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
     {
         Product product = new(request.Title, request.Description, request.BrandId, request.Price, request.Discount);
         
@@ -27,5 +27,7 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommandR
 
             await _unitOfWork.SaveAsync();
         }
+
+        return Unit.Value;
     }
 }

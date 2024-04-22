@@ -1,5 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentValidation;
+using MediatR;
+using Microsoft.Extensions.DependencyInjection;
+using OnionAPI.Application.Behaviours;
 using OnionAPI.Application.Exceptions;
+using System.Globalization;
 using System.Reflection;
 
 namespace OnionAPI.Application;
@@ -15,5 +19,12 @@ public static class Registration
 
         // IMiddleware kullandığında service eklenmesi gerekiyor
         services.AddTransient<ExceptionMiddleware>();
+
+        // FluentValidation service eklemesi
+        services.AddValidatorsFromAssembly(assembly);
+        ValidatorOptions.Global.LanguageManager.Culture = new CultureInfo("tr");
+
+        // her çağrıda yeni instance
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(FluentValidationBehaviours<,>));
     }
 }
