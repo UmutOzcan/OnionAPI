@@ -23,7 +23,7 @@ public class CreateProductCommandValidator : AbstractValidator<CreateProductComm
             .WithName("Fiyat");
 
         RuleFor(x => x.Discount)
-            .GreaterThan(0)
+            .NotEmpty()
             .WithName("İndirim Oranı");
 
         RuleFor(x => x.CategoryIds)
